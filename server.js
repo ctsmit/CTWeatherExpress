@@ -6,7 +6,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const locationController = require('./controllers/location')
-const Locations = require('./models/User')
+const Locations = require('./models/Locations')
 const data = require("./utilities/data")
 
 const mongoURI = process.env.MONGO_URI
@@ -30,7 +30,7 @@ app.get('/seed', async (req, res) => {
   res.send('done')
 })
 
-app.use('/location', locationController) // telling server.js to get the routes from controllers/todos
+app.use('/locations', locationController) // telling server.js to get the routes from controllers/todos
 
 
 app.listen(PORT, () => console.log('listening'))   

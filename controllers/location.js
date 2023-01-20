@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 })
 //New    -- handled by React app
 //Delete -- .delete /photos/:id   -- delete specific photo
-router.get("/", (req, res) => {
+router.delete("/:id", (req, res) => {
   Location.findByIdAndDelete(req.params.id, (err, deletedLocation) => {
     res.json(deletedLocation)
   })
