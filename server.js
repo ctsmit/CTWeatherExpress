@@ -10,7 +10,7 @@ const Locations = require('./models/Locations')
 const data = require("./utilities/data")
 
 const mongoURI = process.env.MONGO_URI
-const PORT = process.env.PORT || 3001
+// const PORT = process.env.PORT || 3001
 
 // Middleware
 // app.use(express.urlencoded({ extended: false }))
@@ -33,4 +33,4 @@ app.get('/seed', async (req, res) => {
 app.use('/locations', locationController) // telling server.js to get the routes from controllers/todos
 
 
-app.listen(PORT, () => console.log('listening'))   
+app.listen(3000, () => console.log('listening'))   
