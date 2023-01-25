@@ -1,11 +1,9 @@
 const userData = [
   {
-    // username: "cody",
-    // password: "password",
-    locations: [{ city: "sparta", state: "nc" }],
+    user: "tpc5eMLwSpNhAkEe8qESWnRrYcM2",
+    locations: [{ city: "sparta", state: "nc" },{ city: "galax", state: "va" },{ city: "wilmington", state: "nc" }],
   },
-  { locations: [{ city: "galax", state: "va" }] },
-  { locations: [{ city: "wilmington", state: "nc" }] },
+  
 ]
 
 module.exports = userData
