@@ -8,19 +8,20 @@ router.get("/", (req, res) => {
     res.json(foundLocations)
   })
 })
-//New    -- handled by React app
-//Delete -- .delete /photos/:id   -- delete specific photo
-// router.delete("/:id", (req, res) => {
-//   Users.findByIdAndDelete(req.params.id, (err, deletedLocation) => {
-//     res.json(deletedLocation)
-//   })
-// })
 
-//Update -- .put /photos/:id      -- update specific photo
-// add a location
-router.put("/:email", (req, res) => {
+//New    -- handled by React app
+
+// Delete a user
+router.delete("/:id", (req, res) => {
+  Users.findByIdAndDelete(req.params.id, (err, deletedUser) => {
+    res.json(deletedUser)
+  })
+})
+
+//update -- add a location
+router.put("/:user", (req, res) => {
   Users.updateOne(
-    { email: req.params.email },
+    { user: req.params.user },
     { $push: { locations: req.body } },
     { new: true },
     (err, updatedLocation) => {
@@ -28,20 +29,20 @@ router.put("/:email", (req, res) => {
     }
   )
 })
-//delete a location
-router.delete("/:id", (req, res) => {
+
+//update -- delete a location
+router.delete("/:user", (req, res) => {
   Users.updateOne(
-    { user: req.body.user },
-    {$pull: {locations: {_id: req.params.id,},},},
+    { user: req.params.user },
+    { $pull: { locations: { _id: req.body } } },
     { new: true },
     (err, updatedLocation) => {
-      console.log(updatedLocation)
       res.json(updatedLocation)
     }
   )
 })
 
-//Create -- .post /photos/        -- create new photo
+//Create -- new user
 router.post("/", (req, res) => {
   Users.create(req.body, (err, createdUser) => {
     res.json(createdUser)
@@ -49,7 +50,8 @@ router.post("/", (req, res) => {
 })
 
 //Edit   -- handled by react app
-//Show   -- .get /photos/:id      -- display specific photo
+
+//Show   -- finds specified user arr of locations
 router.get("/:user", (req, res) => {
   Users.find({ user: req.params.user }, (err, foundLocationsArr) => {
     res.json(foundLocationsArr)
