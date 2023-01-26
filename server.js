@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001
 // Middleware
 app.use(express.json())
 app.use(express.static("public"))
-app.use(cors()) //whitelists requests?{ origin: "*" }
+app.use(cors({ origin: "*" })) //whitelists requests?
 
 // setting up mongoose------------------------------------------
 mongoose.set("strictQuery", false)
