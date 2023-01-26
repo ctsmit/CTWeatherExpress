@@ -4,16 +4,16 @@ const Users = require("../models/Users")
 
 //Index  -- .get /photos/         -- display a list of all
 router.get("/", (req, res) => {
-  Users.find({}, (err, foundLocations) => {
-    res.json(foundLocations)
+  Users.find({}, (err, foundUsers) => {
+    res.json(foundUsers)
   })
 })
 
 //New    -- handled by React app
 
 // Delete a user
-router.delete("/:id", (req, res) => {
-  Users.findByIdAndDelete(req.params.id, (err, deletedUser) => {
+router.delete("/:user", (req, res) => {
+  Users.deleteOne({ user: req.params.user }, (err, deletedUser) => {
     res.json(deletedUser)
   })
 })
@@ -31,10 +31,10 @@ router.put("/:user", (req, res) => {
 })
 
 //update -- delete a location
-router.delete("/:user", (req, res) => {
+router.put("/:userid/:locationid", (req, res) => {
   Users.updateOne(
-    { user: req.params.user },
-    { $pull: { locations: { _id: req.body } } },
+    { user: req.params.userid },
+    { $pull: { locations: { _id: req.params.locationid } } },
     { new: true },
     (err, updatedLocation) => {
       res.json(updatedLocation)
